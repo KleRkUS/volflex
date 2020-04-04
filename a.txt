@@ -1,0 +1,47 @@
+"desktop": {
+        "file": "dist/desktop/desktop.html",
+        "desktop_only": true,
+        "native_window": true,
+        "resizable": true,
+        "transparent": true,
+        "size": {
+          "width": 1212,
+          "height": 699
+        },
+        "min_size": {
+          "width": 1212,
+          "height": 699
+        }
+      },
+
+
+
+      5426,
+              9898,
+              7764,
+              8032,
+              10906,
+              10844,
+              765,
+              10760,
+              10798,
+              6365,
+              10826,
+              7152,
+              1406,
+              10624,
+              7314,
+              12018,
+              11018,
+              10872,
+              1340,
+              21566,
+              10470,
+              8584,
+              9208,
+              10156,
+              9694,
+              3026,
+              10778,
+              8954,
+              10876
