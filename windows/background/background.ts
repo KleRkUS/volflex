@@ -52,12 +52,12 @@ class BackgroundController {
     if (info.isRunning) {
       this._windows[windowNames.desktop].close();
       this._windows[windowNames.inGame].restore();
-      this._windows[windowNames.inGame].minimize();
+      //this._windows[windowNames.inGame].minimize();
       //this.start();
     } else {
       this._windows[windowNames.inGame].close();
-      this._windows[windowNames.desktop].restore();
-      this._windows[windowNames.desktop].minimize();
+      //this._windows[windowNames.desktop].restore();
+      //this._windows[windowNames.desktop].minimize();
       //this.end();
     }
   }

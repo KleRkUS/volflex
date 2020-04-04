@@ -15,7 +15,11 @@ const interestingFeatures = [
   'rank',
   'revived',
   'roster',
-  'team'
+  'team',
+  'collection',
+  'teamGoal',
+  'opposingTeamGoal',
+  'bomb_planted'
 ];
 
 const windowNames = {
