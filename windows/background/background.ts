@@ -1,4 +1,4 @@
-import { windowNames, fortniteClassId } from "../../consts";
+import { windowNames } from "../../consts";
 import { OWGames } from '../../odk-ts/ow-games';
 import { OWGameListener } from '../../odk-ts/ow-game-listener';
 import { OWWindow } from '../../odk-ts/ow-window';
@@ -52,7 +52,7 @@ class BackgroundController {
     if (info.isRunning) {
       this._windows[windowNames.desktop].close();
       this._windows[windowNames.inGame].restore();
-      //this._windows[windowNames.inGame].minimize();
+      this._windows[windowNames.inGame].minimize();
       //this.start();
     } else {
       this._windows[windowNames.inGame].close();
@@ -64,42 +64,12 @@ class BackgroundController {
 
   private async isFortniteRunning(): Promise<boolean> {
     const info = await OWGames.getRunningGameInfo();
-
     return info && info.isRunning && this.isGameFortnite(info);
   }
 
   // Identify whether the RunningGameInfo object we have references Fortnite
   private isGameFortnite(info: RunningGameInfo) {
     return true;
-  }
-
-  private start() {
-    let streamSettings = {
-      "video": {
-        "sub_folder_name": 'video',
-        "fps": 30,
-        "width": 1920,
-        "height": 1080,
-        "auto_calc_kbps": true,
-        "buffer_length": 18000,
-        "max_kbps": 20000,
-        'frame_interval': 1,
-        "test_drop_frames_interval": 1,
-        "notify_dropped_frames_ratio": 2,
-        "max_file_size_bytes": 1000000000,
-        "include_full_size_video": true,
-        "override_overwolf_setting": false,
-        "disable_when_sht_not_supported": false
-      },
-      "gif_as_video": true,
-      "max_quota_gb": 10,
-    };
-  }
-
-  private end() {
-    overwolf.media.replays.turnOff((res) => {
-      console.log(res);
-    });
   }
 }
 

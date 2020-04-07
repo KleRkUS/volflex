@@ -11,7 +11,7 @@ import WindowState = overwolf.windows.WindowState;
 // Like the background window, it also implements the Singleton design pattern.
 class InGame extends AppWindow {
   private static _instance: InGame;
-  private _fortniteGameEventsListener: OWGamesEvents;
+  private gameEventsListener: OWGamesEvents;
   private _eventsLog: HTMLElement;
   private _infoLog: HTMLElement;
 
@@ -21,10 +21,10 @@ class InGame extends AppWindow {
     this._eventsLog = document.getElementById('eventsLog');
     this._infoLog = document.getElementById('infoLog');
 
-    this.setToggleHotkeyBehavior();
-    this.setToggleHotkeyText();
+    // this.setToggleHotkeyBehavior();
+    // this.setToggleHotkeyText();
 
-    this._fortniteGameEventsListener = new OWGamesEvents({
+    this.gameEventsListener = new OWGamesEvents({
       onInfoUpdates: this.onInfoUpdates.bind(this),
       onNewEvents: this.onNewEvents.bind(this)
     },
@@ -42,7 +42,7 @@ class InGame extends AppWindow {
   }
 
   public run() {
-    this._fortniteGameEventsListener.start();
+    this.gameEventsListener.start();
 
     let streamSettings = {
       "video": {
@@ -105,30 +105,30 @@ class InGame extends AppWindow {
     }
   }
 
-  //Displays the toggle minimize/restore hotkey in the window header
-  private async setToggleHotkeyText() {
-    const hotkeyText = await OWHotkeys.getHotkeyText(hotkeys.toggle);
-    const hotkeyElem = document.getElementById('hotkey');
-    hotkeyElem.textContent = hotkeyText;
-  }
-
-  //Sets toggleInGameWindow as the behavior for the Ctrl+F hotkey
-  private async setToggleHotkeyBehavior() {
-    const toggleInGameWindow = async hotkeyResult => {
-      console.log(`pressed hotkey for ${hotkeyResult.featureId}`);
-      const inGameState = await this.getWindowState();
-
-      if (inGameState.window_state === WindowState.NORMAL ||
-        inGameState.window_state === WindowState.MAXIMIZED) {
-        this.currWindow.minimize();
-      } else if (inGameState.window_state === WindowState.MINIMIZED ||
-        inGameState.window_state === WindowState.CLOSED) {
-        this.currWindow.restore();
-      }
-    }
-
-    OWHotkeys.onHotkeyDown(hotkeys.toggle, toggleInGameWindow);
-  }
+  // //Displays the toggle minimize/restore hotkey in the window header
+  // private async setToggleHotkeyText() {
+  //   const hotkeyText = await OWHotkeys.getHotkeyText(hotkeys.toggle);
+  //   const hotkeyElem = document.getElementById('hotkey');
+  //   hotkeyElem.textContent = hotkeyText;
+  // }
+  //
+  // //Sets toggleInGameWindow as the behavior for the Ctrl+F hotkey
+  // private async setToggleHotkeyBehavior() {
+  //   const toggleInGameWindow = async hotkeyResult => {
+  //     console.log(`pressed hotkey for ${hotkeyResult.featureId}`);
+  //     const inGameState = await this.getWindowState();
+  //
+  //     if (inGameState.window_state === WindowState.NORMAL ||
+  //       inGameState.window_state === WindowState.MAXIMIZED) {
+  //       this.currWindow.minimize();
+  //     } else if (inGameState.window_state === WindowState.MINIMIZED ||
+  //       inGameState.window_state === WindowState.CLOSED) {
+  //       this.currWindow.restore();
+  //     }
+  //   }
+  //
+  //   OWHotkeys.onHotkeyDown(hotkeys.toggle, toggleInGameWindow);
+  // }
 
   // Appends a new line to the specified log
   private logLine(log: HTMLElement, data, highlight) {

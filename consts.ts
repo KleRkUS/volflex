@@ -1,5 +1,3 @@
-const fortniteClassId = 21216;
-
 const interestingFeatures = [
   'counters',
   'death',
@@ -32,7 +30,6 @@ const hotkeys = {
 };
 
 export {
-  fortniteClassId,
   interestingFeatures,
   windowNames,
   hotkeys
